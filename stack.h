@@ -1,0 +1,2 @@
+void StackAdd();
+void StackRead();
