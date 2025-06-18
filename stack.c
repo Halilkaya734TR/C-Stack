@@ -11,37 +11,49 @@ int main()
 {
     char islem;
     Stack = malloc(sinir * sizeof(int));
-   
-    menu:
-   
-    printf("Ekleme yapmak için '+', okumak için '-', çıkmak için 'q' tuşlayınız! \n");
-    scanf(" %c",&islem);
 
-    switch(islem)
+    if(Stack == NULL)
     {
-        case '+':
-        StackAdd();
-        break;
-        case '-':
-        StackRead();
-        break;
-        case 'q':
-        printf("Program Kapatılıyor...");
-        free(Stack);
+        printf("Stack oluşturulamadı!");
         return 1;
-        default:
-        printf("Yanlış giriş yaptınız! Tekrar deneyiniz. \n");
-        
-    } 
-    goto menu;   
+    }
+   
+    
+    while(1)
+    {
+        printf("Ekleme yapmak için '+', okumak için '-', çıkmak için 'q' tuşlayınız! \n");
+        scanf(" %c",&islem);
+
+        switch(islem)
+        {
+            case '+':
+            StackAdd();
+            break;
+            case '-':
+            StackRead();
+            break;
+            case 'q':
+            printf("Program Kapatılıyor...");
+            free(Stack);
+            return 0;
+            default:
+            printf("Yanlış giriş yaptınız! Tekrar deneyiniz. \n");
+        } 
+    }  
 }
 
-void StackAdd()
+int StackAdd()
 {
     if(size == sinir)
     {
         Stack = realloc(Stack, (size * 1.5) * sizeof(int));
-        sinir == sinir * 1.5;
+        sinir = sinir * 1.5;
+
+        if(Stack == NULL)
+        {
+            printf("Stack düzenlenirken sorun oluştu!");
+            return 1;
+        }
     }
     
     int addNumber;
